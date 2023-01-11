@@ -58,14 +58,18 @@ export async function initTokenMap(provider: providers.JsonRpcProvider) {
     const tokenList = await fetchTokenList();
     tokenList.tokens
       .filter((token) => token.chainId === 1)
-      .map((token) => {
+      .map((tokenInfo) => {
         ERC20_TOKEN_MAP.set(
-          token.symbol.toLowerCase(),
-          new ERC20Token(token, provider)
+          tokenInfoToID(tokenInfo),
+          new ERC20Token(tokenInfo, provider)
         );
-        return token;
+        return tokenInfo;
       });
   }
+}
+
+export function tokenInfoToID(token: TokenInfo): string {
+  return token.symbol.toLowerCase();
 }
 
 export function isStableCoin(tokenID: string): Boolean {

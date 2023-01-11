@@ -22,25 +22,15 @@ export class UniswapRouter {
 
     let route;
 
-    try {
-      route = await this.router.route(
-        currencyAmount,
-        token1,
-        TradeType.EXACT_INPUT,
-        {
-          type: SwapType.UNIVERSAL_ROUTER,
-          slippageTolerance: new Percent(5, 100),
-        }
-      );
-
-      console.log(
-        "found price for ",
-        token0Info.symbol,
-        route?.quote.toExact()
-      );
-    } catch (e) {
-      console.log("can not get price for ", token0Info.symbol);
-    }
+    route = await this.router.route(
+      currencyAmount,
+      token1,
+      TradeType.EXACT_INPUT,
+      {
+        type: SwapType.UNIVERSAL_ROUTER,
+        slippageTolerance: new Percent(5, 100),
+      }
+    );
 
     return route?.quote.toExact();
   }

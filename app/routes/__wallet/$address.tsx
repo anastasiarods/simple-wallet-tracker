@@ -26,8 +26,7 @@ export const loader = async ({ params }: LoaderArgs) => {
 
   const assets = await addressAssets(params.address);
   const name = await ensName(params.address);
-  console.log(name);
-  return json({ assets: assets, address: params.address, ensName: name });
+  return json({ assets, address: params.address, ensName: name });
 };
 
 export default function WalletAddress() {
