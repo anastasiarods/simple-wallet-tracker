@@ -1,7 +1,7 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { addressAssets, ensName } from "~/web3/ethereum";
+import { addressAssets, ensName } from "~/web3/ethereum.server";
 import invariant from "tiny-invariant";
 import {
   Card,
